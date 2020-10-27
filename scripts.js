@@ -46,7 +46,8 @@ function start() {
 
 
   //kíkja ef það er í íslenskan stafróf
-  if (!str.includes(LETTERS)){
+  //TODO, verður að neita "blåhaj" intak
+  if (str.includes(LETTERS)){
     alert('Þú gafst upp stafi sem ekki er hægt að nota. Reyndu aftur.')
     continue;
   }
