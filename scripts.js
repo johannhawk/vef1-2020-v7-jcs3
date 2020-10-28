@@ -136,7 +136,7 @@ function decode(str, n) {
     if(nytt_index < 0)
       nytt_index = nytt_index - letters.length;
 
-      output += letters[nytt_index];
+    output += letters[nytt_index];
   }
 
   return output;
