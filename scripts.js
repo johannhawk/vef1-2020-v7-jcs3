@@ -35,7 +35,7 @@ function start() {
   const str = prompt('Strengur:');
 
   
-  if (str == ""){
+  if (str == " "){
     alert('Þú gafst ekki upp streng. Reyndu aftur')
     
     continue;
@@ -43,14 +43,11 @@ function start() {
 
   str.toUpperCase();
 
-
-
   //kíkja ef það er í íslenskan stafróf
-  //TODO, verður að neita "blåhaj" intak
-  if (str.includes(LETTERS)){
+  /*if (str.includes(LETTERS)){  //TODO, verður að neita "blåhaj" og "/*)/=&" intak
     alert('Þú gafst upp stafi sem ekki er hægt að nota. Reyndu aftur.')
     continue;
-  }
+  }*/
 
 
   //kikja fyrir tolur
@@ -58,8 +55,6 @@ function start() {
     alert('Villa! Strengur hefur tölu');
     continue;
   }
-
-
 
   if (input === 'afkóða') {
     alert('Niðurstaða: ' + decode(str, shiftNum))
@@ -81,13 +76,28 @@ start();
  * @param {number} n Hliðrun, heiltala á bilinu [0, lengd stafrófs]
  * @returns {string} Upprunalegi strengurinn hliðraður um n til hægri
  */
-function encode(str, n) {
-  str = str.toLowerCase();
+function encode(str, n) { //n er shift
+  //str = str.toLowerCase();
 
   let en_output = '';
 
+  for(let i = 0; i < str; i++){
+    let stafur = str[i];
+    alert('stafur:' + stafur);
+    let staf_index = LETTERS.indexOf(stafur)
+
+    let nytt_index = staf_index + n;
+
+    if(nytt_index > LETTERS.length -1)
+      nytt_index = nytt_index - LETTERS.length;
+
+    if(nytt_index < 0)
+      nytt_index = nytt_index + LETTERS.length;
+
+    en_output += LETTERS[nytt_index];
+  }
   //debugger;
-  return str;
+  return en_output;
 }
 //console.log(encode('HALLO', 2))
 
@@ -99,11 +109,11 @@ function encode(str, n) {
  * @returns {string} Upprunalegi strengurinn hliðraður um n til vinstri
  */
 function decode(str, n) {
-  str = str.toLowerCase();
+  //str = str.toLowerCase();
 
   let de_output = '';
 
-  return str;
+  return de_output;
 }
 
 console.assert(encode('A', 3) === 'D', 'kóðun á A með n=3 er D');
