@@ -78,26 +78,31 @@ start();
  */
 function encode(str, n) { //n er shift
   //str = str.toLowerCase();
+  let letters = LETTERS.split('');//splitta LETTERS til að gera það nothæft
+  let output = '';
 
-  let en_output = '';
-
-  for(let i = 0; i < str; i++){
+  for(var i = 0; i < str.length; i++){
     let stafur = str[i];
-    alert('stafur:' + stafur);
-    let staf_index = LETTERS.indexOf(stafur)
+    
+    if(stafur === ' '){//ef það eru einhvervegin bil
+      output += stafur;
+      continue;
+    }
+
+    let staf_index = letters.indexOf(stafur)
 
     let nytt_index = staf_index + n;
 
-    if(nytt_index > LETTERS.length -1)
-      nytt_index = nytt_index - LETTERS.length;
+    if(nytt_index > letters.length -1)
+      nytt_index = nytt_index - letters.length;
 
     if(nytt_index < 0)
-      nytt_index = nytt_index + LETTERS.length;
+      nytt_index = nytt_index + letters.length;
 
-    en_output += LETTERS[nytt_index];
+    output += letters[nytt_index];
   }
   //debugger;
-  return en_output;
+  return output;
 }
 //console.log(encode('HALLO', 2))
 
@@ -110,10 +115,31 @@ function encode(str, n) { //n er shift
  */
 function decode(str, n) {
   //str = str.toLowerCase();
+  let letters = LETTERS.split('');//splitta LETTERS til að gera það nothæft
+  let output = '';
 
-  let de_output = '';
+  for(var i = 0; i < str.length; i++){
+    let stafur = str[i];
 
-  return de_output;
+    if(stafur === ' '){//ef það eru einhvervegin bil
+      output += stafur;
+      continue;
+    }
+
+    let staf_index = letters.indexOf(stafur)
+
+    let nytt_index = staf_index - n;
+
+    if(nytt_index > letters.length -1)
+      nytt_index = nytt_index + letters.length;
+
+    if(nytt_index < 0)
+      nytt_index = nytt_index - letters.length;
+
+      output += letters[nytt_index];
+  }
+
+  return output;
 }
 
 console.assert(encode('A', 3) === 'D', 'kóðun á A með n=3 er D');
